@@ -33,9 +33,10 @@ const deleteProduct = (state, product) => {
 
 const updateToCart = (state, product, quantity) => {
     let index = findIndex(state, product);
-    // if (state[index].quantity > 1 && state[index].product.inventory) {
-    state[index].quantity += quantity;
-    // }
+    let newQuantity = state[index].quantity + quantity;
+    if (newQuantity !== 0 && newQuantity <= product.inventory) {
+        state[index].quantity += quantity;
+    }
     return state;
 };
 
@@ -52,7 +53,10 @@ const findIndex = (state, product) => {
 const addToCart = (state, product) => {
     let index = findIndex(state, product);
     if (index !== -1) {
-        state[index].quantity++;
+        let newQuantity = state[index].quantity + 1;
+        if (newQuantity <= product.inventory) {
+            state[index].quantity++;
+        }
     } else {
         state = [...state, { product, quantity: 1 }];
     }

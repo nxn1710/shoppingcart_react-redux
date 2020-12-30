@@ -19,7 +19,7 @@ export class Product extends Component {
                         <h5 className="card-title text-right">
                             {product.name}
                         </h5>
-                        <p className="card-text">${product.price}</p>
+                        <p className="card-text">Price: ${product.price} inventory: {product.inventory}</p>
                         <button
                             onClick={() => this.onAddToCart(product)}
                             className="btn btn-primary"
